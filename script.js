@@ -1,40 +1,55 @@
-let mony = 30000;
-let incomy = 'Фриланс';
-let addExpenses = 'интернет, такси, коммуналка';
-let deposit = false;
+'use strict'
+function getAccumulatedMonth (mony , expenses){
+    return mony - expenses;
+}
+
+function getExpensesMonth(expenses){
+    let sum = 0;
+    for(let i = 0; i < 2; ++i){
+        sum += expenses[i];
+    }
+    return sum;
+}
+
+let mony;
+let incomy;
+let addExpenses;
+let deposit;
 let mission = 4000000;
-let period = 6;
+let period6;
+
+let expenses1; 
+let expenses2; 
+let expenses = Array();
+const start = function (){
+    do{
+    mony = (prompt('Ваш месячный доход?'));
+    } while(isNaN(mony) ||!isFinite(mony) || mony === ''); 
+    mony = +mony;
+    addExpenses = prompt("Перечислите ваши дополнительные расходы в месяц через запятую: ").split(', ');
+    console.log(addExpenses);
+    deposit = confirm('Есть ли у вас депозит в банке?');
+    
+    for(let i = 0; i < 2; ++i){
+        expenses1 = prompt("Введите обязательную статью расходов: ");
+        expenses[i] = +prompt('Во сколько это обойдется?');
+    }
+}
+
+const getTargetShow = function(target){
+    if(target >= 0) console.log("Ваша цель будет достигнута за "+ target +" месяцев");
+    else console.log("Цель не будет достигнута");
+}
+start();
+
 
 console.log(typeof mony);
 console.log(typeof incomy);
 console.log(typeof deposit);
 
-mony = +(prompt('Ваш месячный доход?'));
-addExpenses = prompt("Перечислите ваши дополнительные расходы в месяц через запятую: ").split(', ');
-console.log(addExpenses);
-deposit = confirm('Есть ли у вас депозит в банке?');
-let expenses1 = prompt("Введите обязательную статью расходов: ");
-let amount1 = +prompt('Во сколько это обойдется?');
-let expenses2 = prompt("Введите обязательную статью расходов: ");
-let amount2 = +prompt('Во сколько это обойдется?');
+let sumExpenses = getExpensesMonth(expenses);
 
-/*function addExpenses(amount1, amount2){
-    let expenses = Array();
-    expenses[0] = amount1;
-    expenses[1] = amount2;
-    console.log(expenses);
-}*/
-
-function getAccumulatedMonth (mony , expenses){
-    return mony - expenses;
-}
-
-function getExpensesMonth(amount1, amount2){
-    return amount1 + amount2;
-}
-let expenses = getExpensesMonth(amount1, amount2);
-
-let accumulatedMonth = getAccumulatedMonth(mony, expenses);
+let accumulatedMonth = getAccumulatedMonth(mony, sumExpenses);
 
 function getTargetMonth (accumulatedMonth, mission){
     return mission / accumulatedMonth;
@@ -43,4 +58,5 @@ function getTargetMonth (accumulatedMonth, mission){
 let budgetDay = accumulatedMonth / 30;
 let target = getTargetMonth(accumulatedMonth, mission);
 
+getTargetShow(target);
 
