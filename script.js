@@ -1,15 +1,15 @@
-let mony = 30000;
-let incomy = 'Фриланс';
-let addExpenses = 'интернет, такси, коммуналка';
-let deposit = false;
-let mission = 4000000;
-let period = 6;
+let money = 30000;
+incomy = 'Фриланс',
+addExpenses = 'интернет, такси, коммуналка',
+deposit = false,
+mission = 4000000,
+period = 6;
 
-console.log(typeof mony);
+console.log(typeof money);
 console.log(typeof incomy);
 console.log(typeof deposit);
 
-mony = +(prompt('Ваш месячный доход?'));
+money = +(prompt('Ваш месячный доход?','50000'));
 addExpenses = prompt("Перечислите ваши дополнительные расходы в месяц через запятую: ").split(', ');
 console.log(addExpenses);
 deposit = confirm('Есть ли у вас депозит в банке?');
@@ -25,8 +25,8 @@ let amount2 = +prompt('Во сколько это обойдется?');
     console.log(expenses);
 }*/
 
-function getAccumulatedMonth (mony , expenses){
-    return mony - expenses;
+function getAccumulatedMonth (money , expenses){
+    return money - expenses;
 }
 
 function getExpensesMonth(amount1, amount2){
@@ -34,7 +34,7 @@ function getExpensesMonth(amount1, amount2){
 }
 let expenses = getExpensesMonth(amount1, amount2);
 
-let accumulatedMonth = getAccumulatedMonth(mony, expenses);
+let accumulatedMonth = getAccumulatedMonth(money, expenses);
 
 function getTargetMonth (accumulatedMonth, mission){
     return mission / accumulatedMonth;
