@@ -1,11 +1,11 @@
-let mony = 30000;
-let incomy = 'Фриланс';
-let addExpenses = 'интернет, такси, коммуналка';
-let deposit = false;
-let mission = 4000000;
-let period = 6;
+let money = 30000,
+incomy = 'Фриланс',
+addExpenses = 'интернет, такси, коммуналка',
+deposit = false,
+mission = 4000000,
+period = 6;
 
-console.log(typeof mony);
+console.log(typeof money);
 console.log(typeof incomy);
 console.log(typeof deposit);
 console.log(addExpenses.length);
@@ -13,21 +13,24 @@ console.log("Период равен " + period + " месяцев.");
 console.log('Цель: заработать', mission, 'рублей');
 console.log(addExpenses.toLowerCase().split(' '));
 
-let budgetDay = mony / 30;
+let budgetDay = money / 30;
 console.log(budgetDay);
 
-money = +(prompt('Ваш месячный доход?'));
+money = +(prompt('Ваш месячный доход?', '50000'));
 addExpenses = prompt("Перечислите ваши дополнительные расходы в месяц через запятую: ");
 deposit = confirm('Есть ли у вас депозит в банке?');
-let expenses1 = prompt("Введите обязательную статью расходов: ");
-let amount1 = +prompt('Во сколько это обойдется?');
-let expenses2 = prompt("Введите обязательную статью расходов: ");
-let amount2 = +prompt('Во сколько это обойдется?');
+const expenses1 = prompt("Введите обязательную статью расходов: ", 'Коммуналка');
+const amount1 = +prompt('Во сколько это обойдется?', '5000');
+const expenses2 = prompt("Введите обязательную статью расходов: ", 'Транспорт');
+const amount2 = +prompt('Во сколько это обойдется?', '10000');
 
-let budgetMonth = mony / (amount1 + amount2);
+let budgetMonth = money - (amount1 + amount2);
+console.log("Бюджет на месяц: " + budgetMonth);
 
 console.log('Ваша цель будет достигнута за: ', Math.ceil(mission / budgetMonth), 'месяцев.');
+
 budgetDay = budgetMonth / 30;
+console.log("Дневной бюджет: " + Math.floor(budgetDay));
 
 if(budgetDay >= 1200){
     console.log('У вас высокий уровень дохода!');
