@@ -47,7 +47,49 @@ const getStatusIncome = function(budgetDay){
     if(budgetDay >= 1200){
         console.log('У вас высокий уровень дохода!');
     }
-    else if(budgetDay >= 600 && budgetDay < 1200){
+         console.log('У вас средний уровень дохода!');
+    }
+    else if(budgetDay >= 0 && budgetDay < 600){
+        console.log('К сожалению у вас очень низкий уровень дохода(');
+    }
+    else{
+        console.log('Что-то пошло не так!');
+    }
+};
+
+const getAccumulatedMonth = function(money , expenses){
+    return money - expenses;
+};
+
+const getTargetMonth = function (accumulatedMonth, mission){
+    return Math.ceil(mission / accumulatedMonth);
+};
+
+start();
+
+const expensesAmount = getExpensesMonth(expenses);
+
+
+const accumulatedMonth = getAccumulatedMonth(money, expensesAmount);
+
+
+const budgetDay = accumulatedMonth / 30;
+const target = getTargetMonth(accumulatedMonth, mission);
+
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf( deposit);
+console.log("Расходы за месяц: " + expensesAmount);
+console.log("Возможные расходы:" + addExpenses);
+console.log("Период равен " + period + " месяцев.");
+
+const getTargetShow = function(target){
+    if(target >= 0) console.log("Ваша цель будет достигнута за "+ target +" месяцев");
+    else console.log("Цель не будет достигнута");
+}
+console.log("Бюджет на день: " + Math.floor(budgetDay));
+getStatusIncome(budgetDay);
+   else if(budgetDay >= 600 && budgetDay < 1200){
 'use strict';
 
 
