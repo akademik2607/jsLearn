@@ -21,15 +21,32 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     deposit: false,
+    percentDeposit: 0,
+    moneyDeposit: 0,
     expenses:{},  
     addExpenses:[], 
     target: 0,
     expensesCount: 2,
     mission: 4000000,
+    period: 6,
     asking: function(){
+
+        if(confirm("Есть ли у Вас дополнительный источник дохода?")){
+            let itemIncome, cashIncome;
+            do{
+                itemIncome = prompt("Каков источник вашего дополнительного дохода?", 'Пою песни');
+            }while(!isNaN(+itemIncome));
+            do{
+                cashIncome = +prompt("Каков размер вашего дополнительного дохода?", '15000');
+            }while(isNaN(+cashIncome));
+            appData.income[itemIncome] = cashIncome;
+        } 
+
         let expName;
         for(let i = 0; i < appData.expensesCount; ++i){
+            do{
             expName = prompt("Введите обязательную статью расходов: ");
+            }while(!isNaN(expName));
             do{
             appData.expenses[expName] = prompt("Во сколько это обойдется: ");
             }while(!isNumber(appData.expenses[expName]));
@@ -68,6 +85,19 @@ let appData = {
     getTargetShow: function(){
         if(appData.target >= 0) console.log("Ваша цель будет достигнута за "+ appData.target +" месяцев");
         else console.log("Цель не будет достигнута");
+    },
+    getInfoDeposit: function(){
+        if(appData.deposit){
+            do{
+            appData.percentDeposit = prompt("Какой процент по депозиту?", '8');
+            }while(isNaN(+appData.percentDeposit));
+            do{
+            appData.moneyDeposit = +prompt("Сколько средств заложено?", 10000);
+            }while(isNaN(+appData.moneyDeposit));
+        }
+    },
+    calcSavedMoney: function(){
+        return appData.budgetMonth * appData.period;
     }
 };
 start();
@@ -85,3 +115,12 @@ console.log("Наша программа включает в себя данны
 for(let item in appData){
     console.log(appData[item]);
 }
+
+let str = '';
+for(let i = 0; i < appData.addExpenses.length; ++i){
+    str += appData.addExpenses[i][0].toUpperCase() + appData.addExpenses[i].slice(1); 
+    if(i !== appData.addExpenses.length - 1){
+        str += ', ';
+    }
+}
+console.log(str);
