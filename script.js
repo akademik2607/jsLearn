@@ -56,6 +56,7 @@ let appData = {
         }
         else if(appData.budgetDay >= 600){
             console.log('У вас середний уровень дохода!');
+        }
         else if(appData.budgetDay >= 0){
             console.log('К сожалению у вас очень низкий уровень дохода(');
         }
