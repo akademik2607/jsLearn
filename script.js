@@ -35,24 +35,27 @@ let appData = {
             let itemIncome, cashIncome;
             do{
                 itemIncome = prompt("Каков источник вашего дополнительного дохода?", 'Пою песни');
-            }while(!isNaN(+itemIncome));
+            }while(!isNaN(+itemIncome) || itemIncome.trim() === '');
             do{
-                cashIncome = +prompt("Каков размер вашего дополнительного дохода?", '15000');
-            }while(isNaN(+cashIncome));
-            appData.income[itemIncome] = cashIncome;
+                cashIncome = prompt("Каков размер вашего дополнительного дохода?", '15000');
+            }while(isNaN(+cashIncome) || cashIncome.trim() === '');
+            appData.income[itemIncome] = +cashIncome;
         } 
 
         let expName;
         for(let i = 0; i < appData.expensesCount; ++i){
             do{
             expName = prompt("Введите обязательную статью расходов: ");
-            }while(!isNaN(expName));
+            }while(!isNaN(expName) || expName.trim() === '');
             do{
             appData.expenses[expName] = prompt("Во сколько это обойдется: ");
-            }while(!isNumber(appData.expenses[expName]));
+            }while(!isNumber(appData.expenses[expName]) || appData.expenses[expName].trim() === '');
             appData.expenses[expName] = +appData.expenses[expName];
         }
-        appData.addExpenses = prompt("Перечислите ваши дополнительные расходы в месяц через запятую: ").toLowerCase().split(', ');
+        do{
+        appData.addExpenses = prompt("Перечислите ваши дополнительные расходы в месяц через запятую: ");
+        }while(!isNaN(+appData.addExpenses) || appData.addExpenses.trim() === '');
+        appData.addExpenses = appData.addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
     }, 
     getExpensesMonth: function(){ 
@@ -90,10 +93,11 @@ let appData = {
         if(appData.deposit){
             do{
             appData.percentDeposit = prompt("Какой процент по депозиту?", '8');
-            }while(isNaN(+appData.percentDeposit));
+            }while(isNaN(+appData.percentDeposit) || appData.percentDeposit.trim() === '');
             do{
-            appData.moneyDeposit = +prompt("Сколько средств заложено?", 10000);
-            }while(isNaN(+appData.moneyDeposit));
+            appData.moneyDeposit = prompt("Сколько средств заложено?", 10000);
+            }while(isNaN(+appData.moneyDeposit) || appData.moneyDeposit.trim() === '');
+            appData.moneyDeposit = +appData.moneyDeposit;
         }
     },
     calcSavedMoney: function(){
@@ -106,6 +110,7 @@ appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getTargetMonth();
+appData.getInfoDeposit();
 
 console.log("Расходы за месяц: " + appData.expensesMonth);
 appData.getTargetShow();
