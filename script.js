@@ -1,5 +1,61 @@
 'use strict' 
 
+
+
+//Получение элементов на странице
+
+const calculate = document.getElementById('start');
+
+const buttonPlusList = document.getElementsByTagName('button');
+
+
+let incomeAddButton,
+    expensesAddButton;
+for(let i = 0; i < buttonPlusList.length; ++i){
+    if(buttonPlusList[i].classList.contains('btn_plus')){
+        if(buttonPlusList[i].classList.contains('income_add')){
+            incomeAddButton = buttonPlusList[i];
+        }
+        else if(buttonPlusList[i].classList.contains('expenses_add')){
+            expensesAddButton = buttonPlusList[i];
+        }
+    }
+}
+
+const depositCheck = document.querySelector('#deposit_check');
+
+const additionalIncomeItem = document.querySelectorAll('.additional_income-item');
+//Поля справа
+const budgetDayValue = document.getElementByClassName('budget_day-value');
+const expensesMonthValue = document.getElementByClassName('expenses_month-value');
+const additionalIncomeValue = document.getElementByClassName('additional_income-value');
+const additionalExpensesValue = document.getElementByClassName('additional_expenses-value');
+const incomePeriodValue = document.getElementByClassName('income_period-value');
+const targetMonthValue = document.getElementByClassName('target_month-value');
+
+//Поля слева
+
+const salaryAmount = document.querySelector('.salary-amount');
+
+const incomeTitle = document.querySelector('.income-title');
+const incomeAmount = document.querySelector('.income-amount');
+
+const additionalIncomeItems = document.querySelectorAll('.additionalIncomeItem');  // Массив
+
+const expensesTitle = document.querySelector('.expenses-title');
+const expensesAmount = document.querySelector('.expenses-amount');
+
+const additionalExpensesItem = document.querySelector('.additional_expenses-item');
+
+const depositAmount = document.querySelector('.deposit-amount');
+const depositPercent = document.querySelector('.deposit-percent');
+
+const targetAmount = document.querySelector('.target-amount');
+
+const periodSelect = document.querySelector('.period-select');
+
+
+
 const isNumber = function(num){ 
     return !(isNaN(parseFloat(num))) && isFinite(num); 
 };
@@ -124,3 +180,5 @@ for(let i = 0; i < appData.addExpenses.length; ++i){
     }
 }
 console.log(str);
+
+
