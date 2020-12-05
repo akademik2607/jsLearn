@@ -6,24 +6,8 @@
 
 const calculate = document.getElementById('start');
 
-const buttonPlusList = document.getElementsByTagName('button');
-
-
-let incomeAddButton,
-    expensesAddButton;
-for(let i = 0; i < buttonPlusList.length; ++i){
-    if(buttonPlusList[i].classList.contains('btn_plus')){
-        if(buttonPlusList[i].classList.contains('income_add')){
-            incomeAddButton = buttonPlusList[i];
-        }
-        else if(buttonPlusList[i].classList.contains('expenses_add')){
-            expensesAddButton = buttonPlusList[i];
-        }
-    }
-}
-
-
-
+const incomeAddButton = document.getElementsByTagName('button')[0],
+      expensesAddButton = document.getElementsByTagName('button')[1];
 
 const depositCheck = document.querySelector('#deposit-check');
  
@@ -31,32 +15,25 @@ const additionalIncomeItem = document.querySelectorAll('.additional_income-item'
   
 
 //Поля справа
-const budgetDayValue = document.getElementsByClassName('budget_day-value');
-const expensesMonthValue = document.getElementsByClassName('expenses_month-value'); 
-const additionalIncomeValue = document.getElementsByClassName('additional_income-value');
-const additionalExpensesValue = document.getElementsByClassName('additional_expenses-value');
-const incomePeriodValue = document.getElementsByClassName('income_period-value');
-const targetMonthValue = document.getElementsByClassName('target_month-value');
-
+const budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
+      budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+      expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0], 
+      additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+      additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+      incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+      targetMonthValue = document.getElementsByClassName('target_month-value')[0];
 //Поля слева 
-const salaryAmount = document.querySelector('.salary-amount');
-
-const incomeTitle = document.querySelector('.income-title');
-const incomeAmount = document.querySelector('.income-amount');
-
-const additionalIncomeItems = document.querySelectorAll('.additionalIncomeItem');  // Массив
-
-const expensesTitle = document.querySelector('.expenses-title');
-const expensesAmount = document.querySelector('.expenses-amount');
-
-const additionalExpensesItem = document.querySelector('.additional_expenses-item');
-
-const depositAmount = document.querySelector('.deposit-amount');
-const depositPercent = document.querySelector('.deposit-percent');
-
-const targetAmount = document.querySelector('.target-amount');
-
-const periodSelect = document.querySelector('.period-select');
+const salaryAmount = document.querySelector('.salary-amount'),
+      incomeTitle = document.querySelector('.income-title'),
+      incomeAmount = document.querySelector('.income-amount'),
+      additionalIncomeItems = document.querySelectorAll('.additionalIncomeItem'),  // Массив
+      expensesTitle = document.querySelector('.expenses-title'),
+      expensesAmount = document.querySelector('.expenses-amount'),
+      additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+      depositAmount = document.querySelector('.deposit-amount'),
+      depositPercent = document.querySelector('.deposit-percent'),
+      targetAmount = document.querySelector('.target-amount'),
+      periodSelect = document.querySelector('.period-select');
            
             
             
