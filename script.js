@@ -1,4 +1,4 @@
-'use strict' 
+'use strict'; 
 
 
 
@@ -34,7 +34,6 @@ const salaryAmount = document.querySelector('.salary-amount'),
       targetAmount = document.querySelector('.target-amount'),
       periodSelect = document.querySelector('.period-select'),
       periodAmount = document.querySelector('.period-amount');
-      console.log(periodSelect);           
 let expensesItems = document.querySelectorAll('.expenses-items'),
     incomeItems = document.querySelectorAll('.income-items');
             
@@ -87,7 +86,6 @@ let appData = {
         periodSelect.addEventListener('input', appData.changeIncomePeriodValue);
     },
     addExpensesBlock: function(){
-        console.log(expensesItems.parentNode); 
 
         const cloneExpensesItem = expensesItems[0].cloneNode(true);
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAddButton);
@@ -183,17 +181,19 @@ let appData = {
         }
     },
     changePeriodAmount: function(){
-        periodAmount.innerHTML = periodSelect.value;
+        periodAmount.textContent = periodSelect.value;
     },
     changeIncomePeriodValue: function(){
         incomePeriodValue.value = appData.calcSavedMoney();
     },
     checkSalaryAmount: function(){
         if(salaryAmount.value.trim() !== ''){
-            calculate.addEventListener('click', appData.start);
+            calculate.removeAttribute('disabled');
+            calculate.style.cursor = 'default';
         }
         else{
-            calculate.removeEventListener('click', appData.start);
+            calculate.setAttribute('disabled', 'disabled');
+            calculate.style.cursor = 'not-allowed';
         }
     },
     calcSavedMoney: function(){
@@ -201,7 +201,9 @@ let appData = {
     },
 };
 
-salaryAmount.addEventListener('change', appData.checkSalaryAmount);
+calculate.addEventListener('click', appData.start);
+appData.checkSalaryAmount();
+salaryAmount.addEventListener('input', appData.checkSalaryAmount);
 
 expensesAddButton.addEventListener('click', appData.addExpensesBlock);
 incomeAddButton.addEventListener('click', appData.addIncomeBlock);
@@ -209,7 +211,7 @@ periodSelect.addEventListener('input', appData.changePeriodAmount);
 
 appData.getTargetMonth();
 
-appData.getTargetShow();
+//appData.getTargetShow();
 
 /*console.log("Наша программа включает в себя данные:");
 for(let item in appData){
