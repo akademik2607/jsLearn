@@ -108,7 +108,7 @@ let appData = {
         additionalIncomeValue.value = this.addIncome.join(', ');
         targetMonthValue.value = this.getTargetMonth();
         incomePeriodValue.value = this.calcSavedMoney();
-        periodSelect.addEventListener('input', this.changeIncomePeriodValue);
+        periodSelect.addEventListener('input', this.changeIncomePeriodValue.bind(this));
     },
     addExpensesBlock: function(){
 
