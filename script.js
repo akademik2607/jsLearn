@@ -98,6 +98,15 @@ let appData = {
                 appData[key] = 0;
             }
         }
+        const length = incomeItems.length > expensesItems.lrngth ? incomeItems.length : expensesItems.length;
+        const parentIncome = incomeItems[0].parentNode,
+              parentExpenses = expensesItems[0].parentNode;
+        for(let i = 1; i < length; ++i){
+            incomeItems[i].remove();
+            expensesItems[i].remove();
+        }
+        incomeAddButton.style.display = 'block';
+        expensesAddButton.style.display = 'block';
 
     },
     showResult: function(){
