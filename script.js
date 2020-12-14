@@ -189,7 +189,7 @@ AppData.prototype.getBudget = function(){
         this.budgetDay = Math.floor(this.budgetMonth / 30); 
     }; 
 
-AppData.prototepe.getTargetMonth = function (){ 
+AppData.prototype.getTargetMonth = function (){ 
         return Math.ceil( +targetAmount.value/ this.budgetMonth);
     };
 
@@ -238,10 +238,10 @@ AppData.prototype.checkSalaryAmount = function(){
             calculate.style.cursor = 'not-allowed';
         }
     };
-AppData.prototype.calcSavedMoney: function(){
+AppData.prototype.calcSavedMoney = function(){
         return this.budgetMonth * periodSelect.value;
-    },
-    addInputDisabled: function(flag){
+    };
+AppData.prototype.addInputDisabled = function(flag){
         const inputs = document.querySelectorAll('input[type="text"]');
         if(flag){
             inputs.forEach(function(item){
@@ -263,25 +263,27 @@ AppData.prototype.addCancel = function(){
             this.addInputDisabled(false);
         };
 
+AppData.prototype.eventListeners = function(){
+    calculate.addEventListener('click', appData.start.bind(appData));
+    this.checkSalaryAmount();
+    salaryAmount.addEventListener('input', appData.checkSalaryAmount.bind(appData));
 
+    expensesAddButton.addEventListener('click', appData.addExpensesBlock);
+    incomeAddButton.addEventListener('click', appData.addIncomeBlock);
+    periodSelect.addEventListener('input', appData.changePeriodAmount.bind(appData));
+
+    this.getTargetMonth();
+
+    this.addInputDisabled();
+
+};
 
 
 const appData = new AppData();
 
+appData.eventListeners();
 
 
-
-calculate.addEventListener('click', appData.start.bind(appData));
-appData.checkSalaryAmount();
-salaryAmount.addEventListener('input', appData.checkSalaryAmount.bind(appData));
-
-expensesAddButton.addEventListener('click', appData.addExpensesBlock);
-incomeAddButton.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.changePeriodAmount.bind(appData));
-
-appData.getTargetMonth();
-
-appData.addInputDisabled();
 //appData.getTargetShow();
 
 /*console.log("Наша программа включает в себя данные:");
