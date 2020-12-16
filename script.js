@@ -101,7 +101,17 @@ AppData.prototype.reset = function(){
                 this[key] = 0;
             }
         }
-
+        incomeAddButton.style.display = 'block';
+        expensesAddButton.style.display = 'block';
+        const incomeParent = incomeItems[0].parentNode,
+            expensesParent = expensesItems[0].parentNode;
+        for(let item  = 1; item <  incomeItems.length; ++item){
+            incomeItems[item].remove();
+        }
+        for(let item  = 1; item <  expensesItems.length; ++item){
+            expensesItems[item].remove();
+        }
+        
     };
 
 AppData.prototype.showResult = function(){
@@ -259,7 +269,7 @@ AppData.prototype.addCancel = function(){
             calculate.style.display = 'block'; 
             this.checkSalaryAmount();
             cancel.style.display = 'none'; 
-            cancel.removeEventListener('click', this.addCansel.bind(this));
+            cancel.removeEventListener('click', this.addCansel);
             this.addInputDisabled(false);
         };
 
