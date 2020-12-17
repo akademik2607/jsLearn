@@ -4,7 +4,8 @@
 
 //Получение элементов на странице
 
-const calculate = document.getElementById('start');
+const calculate = document.getElementById('start'),
+      cancel = document.getElementById('cancel');
 
 const incomeAddButton = document.getElementsByTagName('button')[0],
       expensesAddButton = document.getElementsByTagName('button')[1];
@@ -84,7 +85,7 @@ class AppData{
     reset(){
         const inputs = document.querySelectorAll('input');
         const range = document.querySelector('[type="range"]');
-        inputs.forEach(function(item){
+        inputs.forEach((item)=>{
             item.value = '';
         });
         range.value = '1';
@@ -168,7 +169,7 @@ class AppData{
     getAddExpenses(){
         const _this = this;
         const addExpenses = additionalExpensesItem.value.split(','); 
-        addExpenses.forEach(function(item){
+        addExpenses.forEach((item) =>{
             if(item.trim() !== ''){
                 _this.addExpenses.push(item.trim());
             }
@@ -176,11 +177,10 @@ class AppData{
     }
 
     getAddIncome(){
-        const _this = this;
-        additionalIncomeItem.forEach(function(item){
+        additionalIncomeItem.forEach((item) => {
             const itemVal = item.value.trim();
             if(itemVal !== ''){
-                _this.addIncome.push(itemVal);
+                this.addIncome.push(itemVal);
             }
         });
     }
@@ -282,6 +282,7 @@ class AppData{
         calculate.addEventListener('click', appData.start.bind(appData));
         this.checkSalaryAmount();
         salaryAmount.addEventListener('input', appData.checkSalaryAmount.bind(appData));
+        cancel.addEventListener('click', this.addCansel.bind(this));
 
         expensesAddButton.addEventListener('click', appData.addExpensesBlock);
         incomeAddButton.addEventListener('click', appData.addIncomeBlock);
