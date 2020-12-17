@@ -76,10 +76,8 @@ class AppData{
         this.getBudget();
         this.showResult();
 
-        const cancel = document.querySelector('#cancel');
         calculate.style.display = 'none';
         cancel.style.display = 'block';
-        cancel.addEventListener('click', this.addCancel);
         this.addInputDisabled(true);
     }
     reset(){
@@ -301,20 +299,5 @@ const appData = new AppData();
 appData.eventListeners();
 
 
-//appData.getTargetShow();
-
-/*console.log("Наша программа включает в себя данные:");
-for(let item in appData){
-    console.log(appData[item]);
-}*/
-
-/*let str = '';
-for(let i = 0; i < appData.addExpenses.length; ++i){
-    str += appData.addExpenses[i][0].toUpperCase() + appData.addExpenses[i].slice(1); 
-    if(i !== appData.addExpenses.length - 1){
-        str += ', ';
-    }
-}
-console.log(str);*/
 
 
