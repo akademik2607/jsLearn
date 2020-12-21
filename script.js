@@ -109,6 +109,8 @@ class AppData{
         for(let item  = 1; item <  expensesItems.length; ++item){
             expensesItems[item].remove();
         }
+        depositCheck.checked = false;
+        this.depositHandler();
     }
 
     showResult(){
@@ -278,7 +280,7 @@ class AppData{
         const valueSelect = this.value;
         if(valueSelect === 'other'){
             depositPercent.style.display = 'inline-block';
-            depositPercent.value = 0;
+            depositPercent.value = '';
         }
         else{
             depositPercent.style.display = 'none';
